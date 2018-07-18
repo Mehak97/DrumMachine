@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-08">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<audio id="player">
+    <source id="sourceMp3" src="" type="audio/mp3">
+	</audio>
+
+	<div class="container" id="drum-machine">
+
+		<div class="row">
+			<!-- drum beats option-->
+			<div class="col-md-6 drum-pad">
+					<button type="button" id="Q" onkeypress="drumTrigger('Q')" onclick="drumTrigger('Q')">Q</button>
+					<button type="button" id="O" onkeypress="drumTrigger('O')" onclick="drumTrigger('O')">O</button>
+					<button type="button" id="T" onkeypress="drumTrigger('T')" onclick="drumTrigger('T')">T</button>
+			</div>
+
+			<!-- power button-->
+			<div class="col-md-6">
+				<h5>Power</h5>
+				 <label class="switch">
+				 	<input type="checkbox">
+				 		<span class="slider round"></span>
+				 </label>		
+			</div>	
+		</div>
+
+		<div class="row">
+			<!-- drum beats option-->
+			<div class="col-md-6 drum-pad">
+					<button type="button" id="A" onkeypress="drumTrigger(id)" onclick="drumTrigger(id)">A</button>
+					<button type="button" id="S" onkeypress="drumTrigger(id)" onclick="drumTrigger(id)">S</button>
+					<button type="button" id="E" onkeypress="drumTrigger(id)" onclick="drumTrigger(id)">E</button>
+			</div>
+
+			<!-- volumen controller-->
+			<div class="col-md-6">
+				<input type="textbox" id="display" />
+				<div class="slideconatiner"><br>
+					<input type="range" max="100" min="1" value="40">
+				</div>	
+			</div>	
+		</div>
+
+		<div class="row">
+			<!-- drum beats option-->
+			<div class="col-md-6 drum-pad">
+					<button type="button" id="Z" onkeypress="drumTrigger(id)" onclick="drumTrigger(id)">Z</button>
+					<button type="button" id="X" onkeypress="drumTrigger(id)" onclick="drumTrigger(id)">X</button>
+					<button type="button" id="C" onkeypress="drumTrigger(id)" onclick="drumTrigger(id)">C</button>
+			</div>
+
+			<div class="col-md-6">
+				<h5>Bank</h5>
+				 <label class="switch">
+				 	<input type="checkbox">
+				 		<span class="slider round"></span>
+				 </label>
+			</div>	
+		</div>
+	</div>				
+<script>
+	var bank=[
+	{
+		keyTrigger:'Q',
+		keyCode:81,
+		keyId:'Heater-1',
+		url:'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'
+	},
+	{
+		keyTrigger:'O',
+		keyCode:79,
+		keyId:'Heater-2',
+		url:'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3'
+	},
+	{
+		keyTrigger:'T',
+		keyCode:84,
+		keyId:'Heater-3',
+		url:'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3'
+	},
+	{
+		keyTrigger:'A',
+		keyCode:65,
+		keyId:'Heater-4',
+		url:'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3'
+	},
+	{
+		keyTrigger:'S',
+		keyCode:83,
+		keyId:'Clap',
+		url:'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3'
+	},
+	{
+		keyTrigger:'E',
+		keyCode:69,
+		keyId:'Open-HH',
+		url:'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3'
+	},
+	{
+		keyTrigger:'Z',
+		KeyCode:90,
+		keyId:'Kick and Hat',
+		url:'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3'
+	},
+	{
+		keyTrigger:'X',
+		KeyCode:88,
+		keyId:'Side-Stick',
+		url:'https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3'
+	},
+	{
+		keyTrigger:'C',
+		keyCode:67,
+		keyId:'Snare',
+		url:'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
+	}];
+
+
+	function drumTrigger(id){
+		for( i=0;i<bank.length;i++)
+		{
+			if(id===bank[i].keyTrigger || id===bank[i].keyCode)
+			{
+				var player=document.getElementById('player');
+				var sourceMp3=document.getElementById('sourceMp3');
+				sourceMp3.src= bank[i].url ;
+				player.load();
+				player.play();
+				console.log("keypreess ho gyi ab baje ja sound")
+			}
+		}
+	}
+</script>
+</body>
+</html>	
